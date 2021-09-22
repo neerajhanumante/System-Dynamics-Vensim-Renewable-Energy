@@ -1,0 +1,655 @@
+{UTF-8}
+Village population= INTEG (
+	Birth rate-Death rate,
+		1480)
+	~	person [0,?]
+	~		|
+
+Commissioning rate 2 0=
+	Fraction invested in Solar PV*Total investment in renewables/Installation Cost Solar PV
+	~	kWh/Year
+	~		|
+
+Fraction invested in Biomass gasifiers=
+	0.2
+	~	1/Year
+	~		|
+
+Fraction invested in Biogas=
+	0.3
+	~	1/Year
+	~		|
+
+Fraction invested in Solar PV=
+	0.3
+	~	1/Year
+	~		|
+
+Commissioning rate 1 0=
+	Fraction invested in Biomass gasifiers*Total investment in renewables/Installation cost Biomass gasifier
+	~	kWh/Year
+	~		|
+
+Heat surplus=
+	Heat supply-Heat demand
+	~	kWh
+	~		|
+
+Total village income=
+	Total income from renewables+Income from taxes and grants
+	~	INR
+	~		|
+
+Capacity factor of solar thermal=
+	0.3
+	~	Dmnl
+	~		|
+
+Domestic Electricity Demand=
+	(Electricity demand per household*Per capita Electricity affordability*Village population\
+		)/Sales rate of electricity
+	~	kWh
+	~		|
+
+Electricity demand=
+	Domestic Electricity Demand+Industrial Electricity Demand
+	~	kWh
+	~		|
+
+Commissioning rate 1=
+	Fraction invested in Biogas*Total investment in renewables/Installation cost Biogas
+	~	kWh/Year
+	~		|
+
+Commissioning rate 2=
+	Total investment in renewables*Fraction invested in Solar thermal/Installation cost Solar Thermal
+	~	kWh/Year
+	~		|
+
+Revenue Heat=
+	Heat surplus*Sales rate of Heat
+	~	INR
+	~		|
+
+"Investment in renewables - state"=
+	"Investment in renewables - village"*50
+	~	INR
+	~		|
+
+"Investment in renewables - village"=
+	0.04*Total village income
+	~	INR
+	~		|
+
+Heat demand per household=
+	1750
+	~	kWh
+	~		|
+
+Per capita heat affordability=
+	8
+	~	INR/(kWh*person)
+	~		|
+
+Heat supply=
+	(Capacity factor of biogas*Installed capacity Biogas Heat)+(Capacity factor of solar thermal\
+		*Installed capacity Solar Thermal Heat)
+	~	kWh
+	~		|
+
+Revenue electricity=
+	Electricity surplus*Sales rate of electricity
+	~	INR
+	~		|
+
+Domestic demand=
+	(Village population*Per capita heat affordability*Heat demand per household)/Sales rate of Heat
+	~	kWh
+	~		|
+
+Income from taxes and grants=
+	1e+006
+	~	INR
+	~		|
+
+Electricity surplus=
+	Electricity supply-Electricity demand
+	~	kWh
+	~		|
+
+Electricity demand per household=
+	2000
+	~	kWh
+	~		|
+
+Public expenditure=
+	0.96*Total village income
+	~	INR
+	~		|
+
+Electricity supply=
+	Capacity factor of biogas*Installed capacity Biomass gasifier Electricity+Capacity factor of solar thermal\
+		*Installed capacity Solar PV Electricity
+	~	kWh
+	~		|
+
+Total investment in renewables=
+	"Investment in renewables - village"+"Investment in renewables - state"
+	~	INR
+	~		|
+
+Total income from renewables=
+	Revenue electricity+Revenue Heat
+	~	INR
+	~		|
+
+Heat demand=
+	Domestic demand+Industrial Heat demand
+	~	kWh
+	~		|
+
+Fraction invested in Solar thermal=
+	0.2
+	~	1/Year
+	~		|
+
+Total demand of goods and services=
+	Demand of goods and services*Village population
+	~	1/Year
+	~		|
+
+Death rate=
+	Crude death rate*Village population
+	~	person/Year
+	~		|
+
+Birth rate=
+	Crude birth rate*Village population
+	~	person/Year
+	~		|
+
+Electricity demand per industry=
+	10000
+	~	kWh
+	~		|
+
+Industrial Electricity Demand=
+	Electricity demand per industry*Rural Industries
+	~	kWh
+	~		|
+
+Industrial Heat demand=
+	Rural Industries*Heat Demand per industry
+	~	kWh
+	~		|
+
+Heat Demand per industry=
+	10000
+	~	kWh
+	~		|
+
+Capacity factor of biogas=
+	0.75
+	~	Dmnl
+	~		|
+
+Decommissioning of plants=
+	DELAY FIXED(Commissioning to operation transition*0.5, 25 , 0 )
+	~	person/Year
+	~		|
+
+Installation cost Biogas=
+	7
+	~	INR/kWh
+	~		|
+
+Decommissioning rate 2=
+	DELAY FIXED(Commissioning rate 2, 25 , 0 )
+	~	kWh/Year
+	~		|
+
+Installation cost Solar Thermal=
+	15
+	~	INR/kWh
+	~		|
+
+Installed capacity Biogas Heat= INTEG (
+	Commissioning rate 1-Decommissioning rate 1,
+		900000)
+	~	kWh
+	~		|
+
+Sales rate of electricity=
+	6.2
+	~	INR/kWh
+	~		|
+
+Decommissioning rate 2 0=
+	DELAY FIXED(Commissioning rate 2 0, 27 , 0)
+	~	kWh/Year
+	~		|
+
+Personnel required comm 1=
+	Commissioning rate 1*Personnel requirement in commissioning
+	~	person/Year
+	~		|
+
+Personnel required comm 1 0=
+	Personnel requirement in commissioning*Commissioning rate 1 0
+	~	person/Year
+	~		|
+
+Personnel required comm 2=
+	Commissioning rate 2*Personnel requirement in commissioning
+	~	person/Year
+	~		|
+
+Decommissioning rate 1 0=
+	DELAY FIXED(Commissioning rate 1 0, 27 , 0)
+	~	kWh/Year
+	~		|
+
+Decommissioning rate 1=
+	DELAY FIXED(Commissioning rate 1, 27 , 0)
+	~	kWh/Year
+	~		|
+
+Personnel requirement in commissioning=
+	1/200
+	~	person/kWh [0,?]
+	~		|
+
+Personnel required comm 2 0=
+	Personnel requirement in commissioning*Commissioning rate 2 0
+	~	person/Year
+	~		|
+
+Installation cost Biomass gasifier=
+	8
+	~	INR/kWh
+	~		|
+
+Installation Cost Solar PV=
+	22
+	~	INR/kWh
+	~		|
+
+Closure rate=
+	DELAY FIXED(Establishment rate, 20 , 0 )
+	~	1/Year
+	~		|
+
+Commercialization time=
+	2
+	~	Year
+	~		|
+
+Commissioning to operation transition=
+	DELAY FIXED(Total Commissioning jobs, Commercialization time , Total Commissioning jobs\
+		 )
+	~	person/Year
+	~		|
+
+Total Commissioning jobs=
+	Personnel required comm 1 0+Personnel required comm 1+Personnel required comm 2 0+Personnel required comm 2
+	~	person/Year [0,?]
+	~		|
+
+Demand of goods and services=
+	20
+	~	1/(Year*person)
+	~		|
+
+Establishment rate=
+	Total demand of goods and services/2000
+	~	1/Year
+	~		|
+
+Rural Industries= INTEG (
+	INTEGER( -Closure rate+Establishment rate ),
+		1)
+	~	Dmnl
+	~		|
+
+"Renewables Employment opportunities - commissioning"= INTEG (
+	Total Commissioning jobs-Commissioning to operation transition,
+		40)
+	~	person
+	~		|
+
+Sales rate of Heat=
+	3
+	~	INR/kWh
+	~		|
+
+Crude death rate=
+	7.3/1000
+	~	1/Year
+	~		|
+
+Crude birth rate=
+	20.7/1000
+	~	1/Year
+	~		|
+
+Per capita Electricity affordability=
+	8
+	~	INR/(kWh*person)
+	~		|
+
+Installed capacity Solar Thermal Heat= INTEG (
+	Commissioning rate 2-Decommissioning rate 2,
+		700000)
+	~	kWh
+	~		|
+
+"Renewables Employment opportunities - operation"= INTEG (
+	Commissioning to operation transition-Decommissioning of plants,
+		15)
+	~	person
+	~		|
+
+Installed capacity Biomass gasifier Electricity= INTEG (
+	Commissioning rate 1 0-Decommissioning rate 1 0,
+		200000)
+	~	kWh
+	~		|
+
+Installed capacity Solar PV Electricity= INTEG (
+	Commissioning rate 2 0+Decommissioning rate 2 0,
+		300000)
+	~	kWh
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,90,0
+10,1,Installed capacity Biogas Heat,534,446,54,28,3,131,0,0,0,0,0,0
+10,2,Installed capacity Solar Thermal Heat,529,118,60,38,3,131,0,0,0,0,0,0
+12,3,48,354,444,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(454,444)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(390,444)|
+11,6,48,422,444,6,8,34,3,0,0,1,0,0,0
+10,7,Commissioning rate 1,422,471,48,19,40,3,0,0,-1,0,0,0
+12,8,48,785,445,10,8,0,3,0,0,-1,0,0,0
+1,9,11,8,4,0,0,22,0,0,0,-1--1--1,,1|(731,445)|
+1,10,11,1,100,0,0,22,0,0,0,-1--1--1,,1|(631,445)|
+11,11,48,681,445,6,8,34,3,0,0,1,0,0,0
+10,12,Decommissioning rate 1,681,472,56,19,40,3,0,0,-1,0,0,0
+12,13,48,349,117,10,8,0,3,0,0,-1,0,0,0
+1,14,16,2,4,0,0,22,0,0,0,-1--1--1,,1|(444,117)|
+1,15,16,13,100,0,0,22,0,0,0,-1--1--1,,1|(383,117)|
+11,16,48,414,117,6,8,34,3,0,0,1,0,0,0
+10,17,Commissioning rate 2,414,144,48,19,40,3,0,0,-1,0,0,0
+12,18,48,783,119,10,8,0,3,0,0,-1,0,0,0
+1,19,21,18,4,0,0,22,0,0,0,-1--1--1,,1|(730,119)|
+1,20,21,2,100,0,0,22,0,0,0,-1--1--1,,1|(632,119)|
+11,21,48,681,119,6,8,34,3,0,0,1,0,0,0
+10,22,Decommissioning rate 2,681,146,56,19,40,3,0,0,-1,0,0,0
+1,23,1,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(642,365)|
+1,24,2,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(493,229)|
+10,25,Sales rate of Heat,1067,126,56,11,8,3,0,0,0,0,0,0
+10,26,Revenue Heat,902,207,45,11,8,3,0,0,0,0,0,0
+1,27,25,26,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(990,163)|
+10,28,Personnel required comm 2,96,240,60,19,8,3,0,0,0,0,0,0
+10,29,Personnel required comm 1,187,549,60,19,8,3,0,0,0,0,0,0
+1,30,17,28,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(289,221)|
+1,31,7,29,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(348,524)|
+10,32,Per capita heat affordability,1152,420,48,19,8,3,0,0,0,0,0,0
+1,33,32,34,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1003,477)|
+10,34,Domestic demand,842,384,57,11,8,3,0,0,0,0,0,0
+10,35,Industrial Heat demand,1138,356,47,19,8,3,0,0,0,0,0,0
+10,36,Rural Industries,1305,384,58,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,37,36,35,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1222,370)|
+1,38,35,56,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(933,307)|
+1,39,34,56,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(815,323)|
+1,40,17,22,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(539,206)|
+1,41,7,12,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(538,536)|
+10,42,Personnel requirement in commissioning,61,382,54,27,8,131,0,0,0,0,0,0
+1,43,42,28,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(77,313)|
+1,44,42,29,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(100,464)|
+10,45,Installation cost Solar Thermal,221,83,49,19,8,3,0,0,0,0,0,0
+10,46,Installation cost Biogas,182,468,49,19,8,3,0,0,0,0,0,0
+1,47,45,17,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(315,121)|
+1,48,46,7,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(304,507)|
+10,49,Heat Demand per industry,1237,261,57,19,8,3,0,0,0,0,0,0
+1,50,49,35,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1192,303)|
+10,51,Capacity factor of biogas,390,341,51,22,8,131,0,0,0,0,0,0
+1,52,51,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(522,360)|
+10,53,Village population,1004,375,39,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,54,53,34,1,0,0,0,0,64,0,-1--1--1,,1|(936,362)|
+10,55,Heat supply,617,275,44,11,8,3,0,0,0,0,0,0
+10,56,Heat demand,784,250,49,11,8,3,0,0,0,0,0,0
+10,57,Heat surplus,682,211,40,11,8,3,0,0,0,0,0,0
+1,58,55,57,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(644,247)|
+1,59,57,26,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(782,155)|
+1,60,56,57,0,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(739,232)|
+10,61,Capacity factor of solar thermal,408,247,58,19,8,3,0,0,0,0,0,0
+1,62,61,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(491,290)|
+1,63,25,34,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(928,234)|
+10,64,Heat demand per household,739,335,56,19,8,3,0,0,0,0,0,0
+1,65,64,34,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(791,360)|
+10,66,Total investment in renewables,234,301,64,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,67,66,17,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(330,249)|
+1,68,66,7,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(341,357)|
+10,69,Fraction invested in Solar thermal,122,141,62,19,8,3,0,0,0,0,0,0
+10,70,Fraction invested in Biogas,356,585,59,19,8,3,0,0,0,0,0,0
+1,71,69,17,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(268,141)|
+1,72,70,7,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(385,534)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,90,0
+10,1,Installed capacity Solar PV Electricity,486,528,60,38,3,131,0,0,0,0,0,0
+12,2,48,306,527,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(401,527)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(340,527)|
+11,5,48,371,527,6,8,34,3,0,0,1,0,0,0
+10,6,Commissioning rate 2 0,371,554,48,19,40,3,0,0,-1,0,0,0
+12,7,48,740,529,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(687,529)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(589,529)|
+11,10,48,638,529,6,8,34,3,0,0,1,0,0,0
+10,11,Decommissioning rate 2 0,638,556,56,19,40,3,0,0,-1,0,0,0
+10,12,Installed capacity Biomass gasifier Electricity,400,164,63,34,3,131,0,0,0,0,0,0
+12,13,48,211,156,10,8,0,3,0,0,-1,0,0,0
+1,14,16,12,4,0,43,22,2,0,0,-1--1--1,|12||0-0-0,1|(311,156)|
+1,15,16,13,100,0,45,22,2,0,0,-1--1--1,|12||0-0-0,1|(247,156)|
+11,16,48,279,156,6,8,34,3,0,0,1,0,0,0
+10,17,Commissioning rate 1 0,279,183,48,19,40,3,0,0,-1,0,0,0
+12,18,48,642,157,10,8,0,3,0,0,-1,0,0,0
+1,19,21,18,4,0,0,22,0,0,0,-1--1--1,,1|(613,155)|
+1,20,21,12,100,0,0,22,0,0,0,-1--1--1,,1|(522,155)|
+11,21,48,588,155,6,8,34,3,0,0,1,0,0,0
+10,22,Decommissioning rate 1 0,588,182,56,19,40,3,0,0,-1,0,0,0
+1,23,12,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(384,241)|
+1,24,1,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(468,406)|
+10,25,Revenue electricity,747,486,59,11,8,3,0,0,0,0,0,0
+10,26,Sales rate of electricity,961,552,40,19,8,3,0,0,0,0,0,0
+1,27,26,25,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(845,547)|
+10,28,Personnel required comm 1 0,106,202,60,19,8,3,0,0,0,0,0,0
+10,29,Personnel required comm 2 0,124,486,60,19,8,3,0,0,0,0,0,0
+1,30,6,29,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(242,541)|
+1,31,17,28,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(226,203)|
+10,32,Per capita Electricity affordability,1073,465,73,26,8,131,0,0,0,0,0,0
+1,33,32,34,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(977,460)|
+10,34,Domestic Electricity Demand,820,413,64,19,8,3,0,0,0,0,0,0
+10,35,Industrial Electricity Demand,824,263,62,19,8,3,0,0,0,0,0,0
+10,36,Rural Industries,787,188,58,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,37,35,56,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(719,286)|
+1,38,36,35,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(799,215)|
+1,39,34,56,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(668,373)|
+10,40,Installation cost Biomass gasifier,86,134,59,27,8,131,0,0,0,0,0,0
+10,41,Installation Cost Solar PV,104,578,52,19,8,3,0,0,0,0,0,0
+1,42,40,17,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(198,135)|
+1,43,41,6,0,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(232,566)|
+1,44,17,22,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(418,238)|
+1,45,6,11,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(490,614)|
+10,46,Personnel requirement in commissioning,53,376,64,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,47,46,29,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(84,425)|
+1,48,46,28,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(76,295)|
+10,49,Electricity demand per industry,1010,254,59,19,8,3,0,0,0,0,0,0
+1,50,49,35,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(925,257)|
+10,51,Capacity factor of biogas,298,321,42,22,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,52,51,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(418,317)|
+10,53,Village population,990,391,77,21,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,54,53,34,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(905,401)|
+10,55,Electricity supply,452,298,59,11,8,3,0,0,0,0,0,0
+10,56,Electricity demand,536,339,32,19,8,3,0,0,0,0,0,0
+10,57,Capacity factor of solar thermal,397,403,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,58,57,55,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(422,352)|
+10,59,Electricity surplus,560,449,55,11,8,3,0,0,0,0,0,0
+1,60,55,59,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(490,382)|
+1,61,59,25,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(614,487)|
+10,62,Electricity demand per household,836,336,57,25,8,131,0,0,0,0,0,0
+1,63,62,34,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(828,370)|
+1,64,26,34,0,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(895,487)|
+1,65,56,59,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(580,390)|
+10,66,Total investment in renewables,160,332,64,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,67,66,17,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(184,253)|
+1,68,66,6,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(236,445)|
+10,69,Fraction invested in Biomass gasifiers,444,58,62,19,8,3,0,0,0,0,0,0
+10,70,Fraction invested in Solar PV,388,639,62,19,8,3,0,0,0,0,0,0
+1,71,69,17,0,0,0,0,0,64,0,-1--1--1,,1|(367,116)|
+1,72,70,6,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(381,603)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 3
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,80,0
+10,1,"Renewables Employment opportunities - operation",906,356,66,52,3,131,0,0,0,0,0,0
+12,2,48,1222,353,10,8,0,3,0,0,-1,0,0,0
+1,3,5,2,4,0,0,22,0,0,0,-1--1--1,,1|(1151,354)|
+1,4,5,1,100,0,0,22,0,0,0,-1--1--1,,1|(1025,354)|
+11,5,48,1085,354,6,8,34,3,0,0,1,0,0,0
+10,6,Decommissioning of plants,1085,387,78,25,40,131,0,0,-1,0,0,0
+10,7,"Renewables Employment opportunities - commissioning",551,356,70,53,3,131,0,0,0,0,0,0
+1,8,10,1,4,0,0,22,0,0,0,-1--1--1,,1|(791,353)|
+1,9,10,7,100,0,0,22,0,0,0,-1--1--1,,1|(675,353)|
+11,10,1372,736,353,6,8,34,3,0,0,1,0,0,0
+10,11,Commissioning to operation transition,736,380,61,19,40,131,0,0,-1,0,0,0
+12,12,48,321,352,10,8,0,3,0,0,-1,0,0,0
+1,13,15,7,4,0,0,22,0,0,0,-1--1--1,,1|(441,350)|
+1,14,15,12,100,0,0,22,0,0,0,-1--1--1,,1|(360,350)|
+11,15,48,396,350,6,8,34,3,0,0,1,0,0,0
+10,16,Total Commissioning jobs,396,397,59,39,40,131,0,0,-1,0,0,0
+10,17,Personnel required comm 1,160,551,65,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,18,17,16,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(257,487)|
+10,19,Personnel required comm 1 0,148,594,65,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,20,19,16,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(253,509)|
+10,21,Personnel required comm 2,166,503,65,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,22,Personnel required comm 2 0,164,457,65,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,23,22,16,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(276,428)|
+1,24,21,16,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(265,456)|
+12,25,48,232,111,10,8,0,3,0,0,-1,0,0,0
+1,26,27,25,100,0,0,22,0,0,0,-1--1--1,,1|(274,111)|
+11,27,48,313,111,6,8,34,3,0,0,1,0,0,0
+10,28,Birth rate,313,130,30,11,40,3,0,0,-1,0,0,0
+10,29,Rural Industries,1121,99,40,20,3,3,0,0,0,0,0,0
+12,30,48,967,100,10,8,0,3,0,0,-1,0,0,0
+1,31,33,29,4,0,0,22,0,0,0,-1--1--1,,1|(1058,100)|
+1,32,33,30,100,0,0,22,0,0,0,-1--1--1,,1|(1000,100)|
+11,33,48,1029,100,6,8,34,3,0,0,1,0,0,0
+10,34,Establishment rate,1029,134,51,26,40,131,0,0,-1,0,0,0
+12,35,48,1282,98,10,8,0,3,0,0,-1,0,0,0
+1,36,38,35,4,0,0,22,0,0,0,-1--1--1,,1|(1247,98)|
+1,37,38,29,100,0,0,22,0,0,0,-1--1--1,,1|(1185,98)|
+11,38,48,1216,98,6,8,34,3,0,0,1,0,0,0
+10,39,Closure rate,1216,117,39,11,40,3,0,0,-1,0,0,0
+10,40,Demand of goods and services,497,24,57,19,8,3,0,0,0,0,0,0
+10,41,Crude birth rate,253,198,50,11,8,3,0,0,0,0,0,0
+10,42,Crude death rate,752,176,53,11,8,3,0,0,0,0,0,0
+1,43,41,28,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(277,169)|
+1,44,16,11,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(556,444)|
+10,45,Commercialization time,601,500,59,19,8,3,0,0,0,0,0,0
+1,46,45,11,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(714,469)|
+10,47,Total demand of goods and services,746,49,61,19,8,3,0,0,0,0,0,0
+1,48,40,47,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(610,4)|
+1,49,47,34,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(871,124)|
+1,50,34,39,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(1125,170)|
+1,51,11,6,1,0,43,0,2,65,0,-1--1--1,|12||0-0-0,1|(885,453)|
+10,52,Village population,493,99,40,20,3,3,0,0,0,0,0,0
+1,53,27,52,4,0,0,22,0,0,0,-1--1--1,,1|(386,111)|
+12,54,48,738,100,10,8,0,3,0,0,-1,0,0,0
+1,55,57,54,4,0,0,22,0,0,0,-1--1--1,,1|(682,100)|
+1,56,57,52,100,0,0,22,0,0,0,-1--1--1,,1|(578,100)|
+11,57,48,630,100,6,8,34,3,0,0,1,0,0,0
+10,58,Death rate,630,119,34,11,40,3,0,0,-1,0,0,0
+1,59,42,58,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(697,150)|
+1,60,52,58,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(550,148)|
+1,61,52,28,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(416,152)|
+1,62,52,47,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(602,77)|
+10,63,Revenue electricity,690,545,35,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,64,Revenue Heat,672,576,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,65,Total income from renewables,832,552,58,19,8,3,0,0,0,0,0,0
+1,66,63,65,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(742,547)|
+1,67,64,65,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(743,565)|
+10,68,Income from taxes and grants,833,613,64,19,8,3,0,0,0,0,0,0
+10,69,Total village income,1042,556,43,19,8,3,0,0,0,0,0,0
+1,70,65,69,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(937,553)|
+1,71,68,69,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(941,583)|
+10,72,"Investment in renewables - village",1196,484,63,19,8,3,0,0,0,0,0,0
+10,73,Public expenditure,1192,539,41,19,8,3,0,0,0,0,0,0
+1,74,69,72,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1112,522)|
+1,75,69,73,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1111,548)|
+10,76,"Investment in renewables - state",1003,481,58,19,8,3,0,0,0,0,0,0
+10,77,Total investment in renewables,1292,417,66,19,8,3,0,0,0,0,0,0
+1,78,76,77,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1136,451)|
+1,79,72,77,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1237,454)|
+1,80,72,76,0,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(1103,482)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:80,2
+27:2,
+34:0,
+4:Time
+5:Heat surplus
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+42:1
+24:0
+25:100
+26:100
